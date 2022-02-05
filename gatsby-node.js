@@ -1,9 +1,36 @@
-exports.createPages = async ({ actions }) => {
-  const { createPage } = actions
-  createPage({
-    path: "/using-dsg",
-    component: require.resolve("./src/templates/using-dsg.js"),
-    context: {},
-    defer: true,
-  })
+exports.createSchemaCustomization = ({ actions }) => {
+    const { createTypes, createFieldExtension } = actions
+
+    createFieldExtension({
+        name: `defaultArray`,
+        extend() {
+            return {
+                resolve(source, args, context, info) {
+                    if (source[info.fieldName] == null) {
+                        return []
+                    }
+                    return source[info.fieldName]
+                },
+            }
+        },
+    })
+
+    const typeDefs = `
+        type Site implements Node {
+            siteMetadata: SiteMetadata
+        }
+        type SiteMetadata {
+            menuLinks: [MenuLinks]!
+        }
+        type MenuLinks {
+            name: String!
+            link: String!
+            subMenu: [SubMenu]
+        }
+        type SubMenu {
+            name: String
+            link: String
+        }
+    `
+    createTypes(typeDefs)
 }
