@@ -18,6 +18,32 @@ const headerAnimateVars: Variants = {
     },
 }
 
+const hoverMenuVars: Variants = {
+    init: {
+        textDecoration: "none",
+    },
+    hover: {
+        textDecoration: "underline",
+    },
+}
+
+const popupAnimateVars: Variants = {
+    init: {
+        opacity: 0,
+        display: "none",
+        y: -10,
+    },
+    hover: {
+        display: "block",
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.3,
+            type: "tween",
+        },
+    },
+}
+
 const Header = ({ siteTitle }) => {
     const headerAnimate = useAnimation()
     const { scrollY } = useViewportScroll()
@@ -73,13 +99,20 @@ const Header = ({ siteTitle }) => {
                 <nav className={"w-full w-full sm:inline hidden"}>
                     <ul className={"flex justify-between"}>
                         {menuLinks?.map(menu => (
-                            <li key={menu.link} className={"group relative"}>
+                            <motion.li
+                                key={menu.link}
+                                className={"group relative"}
+                                variants={hoverMenuVars}
+                                initial={"init"}
+                                whileHover={"hover"}
+                            >
                                 <Link to={menu.link}>{menu.name}</Link>
                                 {menu.subMenu && (
-                                    <ul
+                                    <motion.ul
                                         className={
-                                            "z-10 font-gothic group-last:right-0 border-t-emerald-600 border-t-4 absolute hidden group-hover:block max-w-[200px] min-w-[150px] shadow-lg bg-gray-100 w-full py-3 rounded"
+                                            "z-10 font-gothic group-last:right-0 border-t-emerald-600 border-t-4 absolute max-w-[200px] min-w-[150px] shadow-lg bg-gray-100 w-full py-3 rounded"
                                         }
+                                        variants={popupAnimateVars}
                                     >
                                         {menu.subMenu.map(subMenu => (
                                             <Link
@@ -95,9 +128,9 @@ const Header = ({ siteTitle }) => {
                                                 </li>
                                             </Link>
                                         ))}
-                                    </ul>
+                                    </motion.ul>
                                 )}
-                            </li>
+                            </motion.li>
                         ))}
                     </ul>
                 </nav>

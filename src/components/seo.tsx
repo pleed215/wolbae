@@ -13,7 +13,7 @@ import { MetaHTMLAttributes } from "react"
 type SeoProps = {
     lang?: string
     meta?: Array<MetaHTMLAttributes<any>>
-    description?: ""
+    description?: string
     title: string
 }
 

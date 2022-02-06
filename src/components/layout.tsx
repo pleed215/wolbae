@@ -6,7 +6,7 @@
  */
 
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import Header from "./header"
 import Footer from "./footer"
 import {
@@ -16,7 +16,8 @@ import {
     Variants,
 } from "framer-motion"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowUp } from "@fortawesome/free-solid-svg-icons"
+import { faArrowUp, faHome } from "@fortawesome/free-solid-svg-icons"
+import { StaticImage } from "gatsby-plugin-image"
 
 const upFabAnimateVariants: Variants = {
     show: {
@@ -27,7 +28,18 @@ const upFabAnimateVariants: Variants = {
     },
 }
 
-const Layout = ({ children }) => {
+type LayoutProps = {
+    useHero?: boolean
+    pageTitle?: string
+    menuInfo?: string
+}
+
+const Layout: React.FC<LayoutProps> = ({
+    useHero,
+    pageTitle,
+    menuInfo,
+    children,
+}) => {
     const upFabAnimate = useAnimation()
     const { scrollY } = useViewportScroll()
 
@@ -62,6 +74,57 @@ const Layout = ({ children }) => {
         <>
             <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
             <div className={"min-h-screen w-full relative"}>
+                {useHero && (
+                    <>
+                        <div className={"grid"}>
+                            <StaticImage
+                                className={"max-h-[275px]"}
+                                style={{ gridArea: "1/1" }}
+                                src={"../images/parallax.png"}
+                                alt={"월배요양병원 hero 이미지"}
+                                layout={"fullWidth"}
+                            />
+                            <div
+                                className={
+                                    "w-full h-[275px] bg-cover relative grid place-items-center"
+                                }
+                                style={{ gridArea: "1/1" }}
+                            >
+                                <h1
+                                    className={
+                                        "lg:text-3xl md:text-2xl sm:text-xl text-lg font-bold font-jua text-gray-800"
+                                    }
+                                >
+                                    {pageTitle}
+                                </h1>
+                            </div>
+                        </div>
+                        <div className={"w-full h-10 bg-lime-900 flex"}>
+                            <div
+                                className={
+                                    "layout mx-auto w-full h-full flex items-center"
+                                }
+                            >
+                                <div
+                                    className={
+                                        "h-10 w-10 flex justify-center items-center border-l border-r border-gray-200"
+                                    }
+                                >
+                                    <Link to={"/"}>
+                                        <FontAwesomeIcon
+                                            icon={faHome}
+                                            className={"text-white"}
+                                            size={"lg"}
+                                        />
+                                    </Link>
+                                </div>
+                                <h1 className={"ml-2  font-gothic text-white"}>
+                                    {menuInfo}
+                                </h1>
+                            </div>
+                        </div>
+                    </>
+                )}
                 <main className={"layout mx-auto"}>{children}</main>
                 <motion.button
                     variants={upFabAnimateVariants}
