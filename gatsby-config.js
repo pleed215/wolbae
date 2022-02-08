@@ -36,7 +36,7 @@ module.exports = {
                     },
                     {
                         name: "상담 및 면회 안내",
-                        link: "/councel-visit-info",
+                        link: "/counsel-visit-info",
                     },
                     {
                         name: "환자의 권리와 의무",
