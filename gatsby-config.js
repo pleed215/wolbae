@@ -1,9 +1,12 @@
+require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`,
+})
 module.exports = {
     siteMetadata: {
         title: `월배요양병원`,
         description: `대구 달서구에 진천동에 위치한 친절하고 깨끗한 요양병원입니다. 달서구 월배로 119.`,
         author: `월배요양병원`,
-        siteUrl: `http://wbwoori.co.kr`,
+        siteUrl: `https://wbwoori.co.kr`,
         menuLinks: [
             {
                 name: "병원소개",
@@ -114,5 +117,13 @@ module.exports = {
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,
+        {
+            resolve: `gatsby-plugin-react-svg`,
+            options: {
+                rule: {
+                    include: /icons/,
+                },
+            },
+        },
     ],
 }

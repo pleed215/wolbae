@@ -73,7 +73,7 @@ const Layout: React.FC<LayoutProps> = ({
     return (
         <>
             <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-            <div className={"min-h-screen w-full relative"}>
+            <div className={"min-h-screen h-full w-full relative pb-4"}>
                 {useHero && (
                     <>
                         <div className={"grid"}>
@@ -92,7 +92,7 @@ const Layout: React.FC<LayoutProps> = ({
                             >
                                 <h1
                                     className={
-                                        "lg:text-3xl md:text-2xl sm:text-xl text-lg font-bold font-jua text-gray-800"
+                                        "lg:text-4xl md:text-3xl sm:text-2xl text-xl font-bold font-jua text-gray-800"
                                     }
                                 >
                                     {pageTitle}
