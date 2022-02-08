@@ -7,8 +7,8 @@ const NonInsurance = () => {
     return (
         <Layout
             useHero
-            menuInfo={"병원 소개 > 미션과 비전"}
-            pageTitle={"미션과 비전"}
+            menuInfo={"진료 안내 > 비급여 항목 공지"}
+            pageTitle={"월배요양병원 비급여 항목"}
         >
             <Seo
                 title={"미션과 비전"}

@@ -22,7 +22,7 @@
 }
 
 .non-insurance__table-body > tr {
-    @apply h-10 border border-gray-400;
+    @apply h-16 border border-gray-400;
 }
 
 .non-insurance__table-body > tr > th {
