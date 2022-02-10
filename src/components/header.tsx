@@ -1,13 +1,14 @@
 import * as React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faStream } from "@fortawesome/free-solid-svg-icons"
+import { faPhone, faStream } from "@fortawesome/free-solid-svg-icons"
 import {
     motion,
     useAnimation,
     useViewportScroll,
     Variants,
 } from "framer-motion"
+import { Site } from "../../graphql-types"
 
 const headerAnimateVars: Variants = {
     hidden: {
@@ -44,7 +45,9 @@ const popupAnimateVars: Variants = {
     },
 }
 
-const Header = ({ siteTitle }) => {
+type HeaderProps = { siteTitle: string }
+
+const Header = ({ siteTitle }: HeaderProps) => {
     const headerAnimate = useAnimation()
     const { scrollY } = useViewportScroll()
     React.useEffect(() => {
@@ -56,11 +59,7 @@ const Header = ({ siteTitle }) => {
             }
         })
     }, [scrollY, headerAnimate])
-    const {
-        site: {
-            siteMetadata: { menuLinks },
-        },
-    } = useStaticQuery(graphql`
+    const { site } = useStaticQuery<{ site: Site }>(graphql`
         query {
             site {
                 siteMetadata {
@@ -76,67 +75,106 @@ const Header = ({ siteTitle }) => {
             }
         }
     `)
+
     return (
         <motion.header
             variants={headerAnimateVars}
             animate={headerAnimate}
             initial={"show"}
             transition={{ default: 1 }}
-            className={
-                "font-jua w-full shadow h-[80px] flex items-center justify-center sm:px-0 px-4"
-            }
+            className={"font-jua w-full shadow flex  flex-col"}
         >
+            <div className={"w-full bg-lime-900"}>
+                <div
+                    className={
+                        "layout w-full h-10 text-lg text-white flex items-center justify-between mx-auto lg:px-0 px-4"
+                    }
+                >
+                    <div className={"flex items-center"}>
+                        <FontAwesomeIcon
+                            icon={faPhone}
+                            size={"1x"}
+                            className={"mr-4"}
+                        />
+                        <h1>010-5163-8181</h1>
+                    </div>
+                    <div>
+                        <Link to={"/way-to-come"}>
+                            <h4>찾아오시는 길</h4>
+                        </Link>
+                    </div>
+                </div>
+            </div>
             <div
                 className={
-                    "lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm max-w-screen-xs w-full mx-auto my-auto flex sm:justify-start justify-between"
+                    "w-full flex items-center justify-center min-h-[50px]   sm:px-0 px-4"
                 }
             >
-                <h1 className={"lg:mr-40 mr-20 min-w-max inline"}>
-                    <Link className={"text-black"} to="/">
-                        {siteTitle}
-                    </Link>
-                </h1>
-                <nav className={"w-full w-full sm:inline hidden"}>
-                    <ul className={"flex justify-between"}>
-                        {menuLinks?.map(menu => (
-                            <motion.li
-                                key={menu.link}
-                                className={"group relative"}
-                                variants={hoverMenuVars}
-                                initial={"init"}
-                                whileHover={"hover"}
-                            >
-                                <Link to={menu.link}>{menu.name}</Link>
-                                {menu.subMenu && (
-                                    <motion.ul
-                                        className={
-                                            "z-10 font-gothic group-last:right-0 border-t-emerald-600 border-t-4 absolute max-w-[200px] min-w-[150px] shadow-lg bg-gray-100 w-full py-3 rounded"
-                                        }
-                                        variants={popupAnimateVars}
-                                    >
-                                        {menu.subMenu.map(subMenu => (
-                                            <Link
-                                                key={subMenu.name}
-                                                to={subMenu.link}
+                <div className={"layout flex sm:justify-start justify-between"}>
+                    <h1 className={"lg:mr-40 mr-20 min-w-max inline"}>
+                        <Link className={"text-black"} to="/">
+                            {siteTitle}
+                        </Link>
+                    </h1>
+                    <nav className={"w-full w-full sm:inline hidden"}>
+                        <ul className={"flex justify-between"}>
+                            {site.siteMetadata?.menuLinks &&
+                                site.siteMetadata.menuLinks.map(
+                                    menu =>
+                                        menu && (
+                                            <motion.li
+                                                key={menu.link}
+                                                className={"group relative"}
+                                                variants={hoverMenuVars}
+                                                initial={"init"}
+                                                whileHover={"hover"}
                                             >
-                                                <li
-                                                    className={
-                                                        "hover:font-bold hover:bg-gray-200 border-b py-2 last:pt-2 last:border-b-0 px-2"
-                                                    }
-                                                >
-                                                    {subMenu.name}
-                                                </li>
-                                            </Link>
-                                        ))}
-                                    </motion.ul>
+                                                <Link to={menu.link}>
+                                                    {menu.name}
+                                                </Link>
+                                                {menu.subMenu && (
+                                                    <motion.ul
+                                                        className={
+                                                            "z-10 font-gothic group-last:right-0 border-t-emerald-600 border-t-4 absolute max-w-[200px] min-w-[150px] shadow-lg bg-gray-100 w-full py-3 rounded"
+                                                        }
+                                                        variants={
+                                                            popupAnimateVars
+                                                        }
+                                                    >
+                                                        {menu.subMenu.map(
+                                                            subMenu =>
+                                                                subMenu && (
+                                                                    <Link
+                                                                        key={
+                                                                            subMenu.name
+                                                                        }
+                                                                        to={
+                                                                            subMenu.link!
+                                                                        }
+                                                                    >
+                                                                        <li
+                                                                            className={
+                                                                                "hover:font-bold hover:bg-gray-200 border-b py-2 last:pt-2 last:border-b-0 px-2"
+                                                                            }
+                                                                        >
+                                                                            {
+                                                                                subMenu.name
+                                                                            }
+                                                                        </li>
+                                                                    </Link>
+                                                                )
+                                                        )}
+                                                    </motion.ul>
+                                                )}
+                                            </motion.li>
+                                        )
                                 )}
-                            </motion.li>
-                        ))}
-                    </ul>
-                </nav>
-                <button className={"outline-none sm:hidden inline"}>
-                    <FontAwesomeIcon icon={faStream} color={"black"} />
-                </button>
+                        </ul>
+                    </nav>
+                    <button className={"outline-none sm:hidden inline"}>
+                        <FontAwesomeIcon icon={faStream} color={"black"} />
+                    </button>
+                </div>
             </div>
         </motion.header>
     )
