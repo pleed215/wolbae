@@ -8,11 +8,11 @@ const NonInsurance = () => {
         <Layout
             useHero
             menuInfo={"진료 안내 > 비급여 항목 공지"}
-            pageTitle={"월배요양병원 비급여 항목"}
+            pageTitle={"비급여 항목"}
         >
             <Seo
-                title={"미션과 비전"}
-                description={"월배요양병원 미션과 비전"}
+                title={"비급여 항목 안내"}
+                description={"월배요양병원 비급여 항목 안내 페이지입니다."}
             />
             <div className={"mt-10 w-full"}>
                 <div className={"flex items-center"}>

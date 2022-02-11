@@ -1,7 +1,7 @@
 import * as React from "react"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPhone, faStream } from "@fortawesome/free-solid-svg-icons"
+import { faPhone, faStream, faTimes } from "@fortawesome/free-solid-svg-icons"
 import {
     motion,
     useAnimation,
@@ -9,6 +9,9 @@ import {
     Variants,
 } from "framer-motion"
 import { Site } from "../../graphql-types"
+import MainNav from "./mainNav"
+import { useState } from "react"
+import MobileNav from "./mobileNav"
 
 const headerAnimateVars: Variants = {
     hidden: {
@@ -19,41 +22,12 @@ const headerAnimateVars: Variants = {
     },
 }
 
-const hoverMenuVars: Variants = {
-    init: {
-        // @ts-ignore
-        "--after-x": "translateX(-40%)",
-        "--after-opacity": "0",
-    },
-    hover: {
-        // @ts-ignore
-        "--after-x": "translateX(0)",
-        "--after-opacity": "1",
-    },
-}
-
-const popupAnimateVars: Variants = {
-    init: {
-        opacity: 0,
-        display: "none",
-        y: -10,
-    },
-    hover: {
-        display: "block",
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.3,
-            type: "tween",
-        },
-    },
-}
-
 type HeaderProps = { siteTitle: string }
 
 const Header = ({ siteTitle }: HeaderProps) => {
     const headerAnimate = useAnimation()
     const { scrollY } = useViewportScroll()
+    const [toggleMobileMenu, setToggleMobileMenu] = useState(false)
     React.useEffect(() => {
         scrollY.onChange(async () => {
             if (scrollY.get() > 40) {
@@ -79,6 +53,9 @@ const Header = ({ siteTitle }: HeaderProps) => {
             }
         }
     `)
+    const onClickToggleMobileMenu = () => {
+        setToggleMobileMenu(prev => !prev)
+    }
 
     return (
         <motion.header
@@ -111,7 +88,7 @@ const Header = ({ siteTitle }: HeaderProps) => {
             </div>
             <div
                 className={
-                    "w-full flex items-center justify-center min-h-[50px]   sm:px-0 px-4"
+                    "w-full flex items-center justify-center min-h-[50px] sm:px-0 px-4 relative"
                 }
             >
                 <div className={"layout flex sm:justify-start justify-between"}>
@@ -121,66 +98,39 @@ const Header = ({ siteTitle }: HeaderProps) => {
                         </Link>
                     </h1>
                     <nav className={"w-full w-full sm:inline hidden"}>
-                        <ul className={"flex justify-between"}>
-                            {site.siteMetadata?.menuLinks &&
-                                site.siteMetadata.menuLinks.map(
-                                    menu =>
-                                        menu && (
-                                            <motion.li
-                                                key={menu.link}
-                                                className={
-                                                    "group relative header-menu__popup"
-                                                }
-                                                variants={hoverMenuVars}
-                                                initial={"init"}
-                                                whileHover={"hover"}
-                                            >
-                                                <Link to={menu.link}>
-                                                    {menu.name}
-                                                </Link>
-                                                {menu.subMenu && (
-                                                    <motion.ul
-                                                        className={
-                                                            "z-10 font-gothic group-last:right-0 absolute max-w-[200px] min-w-[150px] shadow-lg bg-gray-100 w-full py-3 rounded"
-                                                        }
-                                                        variants={
-                                                            popupAnimateVars
-                                                        }
-                                                    >
-                                                        {menu.subMenu.map(
-                                                            subMenu =>
-                                                                subMenu && (
-                                                                    <Link
-                                                                        key={
-                                                                            subMenu.name
-                                                                        }
-                                                                        to={
-                                                                            subMenu.link!
-                                                                        }
-                                                                    >
-                                                                        <li
-                                                                            className={
-                                                                                "hover:font-bold hover:bg-gray-200 border-b py-2 last:pt-2 last:border-b-0 px-2"
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                subMenu.name
-                                                                            }
-                                                                        </li>
-                                                                    </Link>
-                                                                )
-                                                        )}
-                                                    </motion.ul>
-                                                )}
-                                            </motion.li>
-                                        )
-                                )}
-                        </ul>
+                        {site.siteMetadata && site.siteMetadata.menuLinks && (
+                            <MainNav menuLinks={site.siteMetadata.menuLinks} />
+                        )}
                     </nav>
-                    <button className={"outline-none sm:hidden inline"}>
-                        <FontAwesomeIcon icon={faStream} color={"black"} />
-                    </button>
+                    <div
+                        id={"mobile-menu__anchor"}
+                        className={"relative sm:hidden inline"}
+                    >
+                        <button
+                            className={"outline-none"}
+                            onClick={onClickToggleMobileMenu}
+                        >
+                            {toggleMobileMenu ? (
+                                <FontAwesomeIcon
+                                    icon={faTimes}
+                                    color={"black"}
+                                    size={"lg"}
+                                />
+                            ) : (
+                                <FontAwesomeIcon
+                                    icon={faStream}
+                                    color={"black"}
+                                />
+                            )}
+                        </button>
+                    </div>
                 </div>
+                {site.siteMetadata && site.siteMetadata.menuLinks && (
+                    <MobileNav
+                        show={toggleMobileMenu}
+                        menuLinks={site.siteMetadata.menuLinks}
+                    />
+                )}
             </div>
         </motion.header>
     )

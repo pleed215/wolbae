@@ -51,6 +51,7 @@ module.exports = {
             {
                 name: "병원 시설 안내",
                 link: "/facilities",
+                subMenu: [{ name: "시설 소개", link: "/facilities" }],
             },
             {
                 name: "프로그램 소개",

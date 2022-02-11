@@ -38,7 +38,7 @@ const AdmTreatInfo = () => {
                 </h4>
                 <p
                     className={
-                        "p-2 text-lg text-white font-bold bg-lime-500 mt-3"
+                        "p-2 text-lg text-white font-bold bg-lime-700 mt-3"
                     }
                 >
                     질환 별 입원대상
@@ -69,14 +69,14 @@ const AdmTreatInfo = () => {
                 </ul>
                 <div className={"flex items-center text-2xl"}>
                     <Dot className={"mr-4"} />
-                    <h1>진료 및 접수 시간 안내</h1>
+                    <h1>접수 시간 안내</h1>
                 </div>
                 <hr className={"my-4"} />
                 <div className={"grid md:grid-cols-3 grid-cols-1 gap-4 mb-1"}>
                     <div className={"w-full"}>
                         <p
                             className={
-                                "py-2 text-center bg-lime-500 text-white text-xl font-bold"
+                                "py-2 text-center bg-lime-700 text-white text-xl font-bold"
                             }
                         >
                             평일
@@ -92,7 +92,7 @@ const AdmTreatInfo = () => {
                     <div className={"w-full"}>
                         <p
                             className={
-                                "py-2 text-center bg-lime-500 text-white text-xl font-bold"
+                                "py-2 text-center bg-lime-700 text-white text-xl font-bold"
                             }
                         >
                             토요일
@@ -108,7 +108,7 @@ const AdmTreatInfo = () => {
                     <div className={"w-full"}>
                         <p
                             className={
-                                "py-2 text-center bg-lime-500 text-white text-xl font-bold"
+                                "py-2 text-center bg-lime-700 text-white text-xl font-bold"
                             }
                         >
                             점심 시간
@@ -123,9 +123,9 @@ const AdmTreatInfo = () => {
                     </div>
                 </div>
                 <h4 className={"mb-4 text-lg font-bold"}>
-                    토요일, 일요일, 공휴일은 외래 진료 휴진입니다. 담당의사의
-                    사정 또는 휴가 일정이 있을 수 있으니 반드시 전화로 문의 주신
-                    후에 방문 부탁드립니다.
+                    토요일, 일요일, 공휴일은 외래 휴진입니다. 담당의사의 사정
+                    또는 휴가 일정이 있을 수 있으니 반드시 전화로 문의 주신 후에
+                    방문 부탁드립니다.
                 </h4>
                 <div className={"flex items-center text-2xl"}>
                     <Dot className={"mr-4"} />
@@ -136,7 +136,7 @@ const AdmTreatInfo = () => {
                     <div className={"w-full"}>
                         <p
                             className={
-                                "py-2 text-center bg-lime-500 text-white text-xl font-bold"
+                                "py-2 text-center bg-lime-700 text-white text-xl font-bold"
                             }
                         >
                             조식
@@ -152,7 +152,7 @@ const AdmTreatInfo = () => {
                     <div className={"w-full"}>
                         <p
                             className={
-                                "py-2 text-center bg-lime-500 text-white text-xl font-bold"
+                                "py-2 text-center bg-lime-700 text-white text-xl font-bold"
                             }
                         >
                             중식
@@ -168,7 +168,7 @@ const AdmTreatInfo = () => {
                     <div className={"w-full"}>
                         <p
                             className={
-                                "py-2 text-center bg-lime-500 text-white text-xl font-bold"
+                                "py-2 text-center bg-lime-700 text-white text-xl font-bold"
                             }
                         >
                             석식
