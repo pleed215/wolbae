@@ -116,3 +116,13 @@
     @apply p-6 border border-gray-300 rounded;
   }
 }
+
+.header-menu__popup {
+  &::after {
+    content: "";
+    @apply bg-lime-300/70 w-full h-2 bottom-0 absolute z-10 left-0;
+    transform: var(--after-x);
+    opacity: var(--after-opacity);
+    transition-duration: 0.3s;
+  }
+}

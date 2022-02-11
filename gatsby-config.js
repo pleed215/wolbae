@@ -61,12 +61,16 @@ module.exports = {
                         link: "/treat-system",
                     },
                     {
+                        name: "한방진료 프로그램",
+                        link: "/korean-medical",
+                    },
+                    {
                         name: "인지기능 프로그램",
                         link: "/cognitive-treat",
                     },
                     {
-                        name: "한방진료 프로그램",
-                        link: "/korean-medical",
+                        name: "물리치료 프로그램",
+                        link: "/physical-therapy",
                     },
                     {
                         name: "사회복지 프로그램",

@@ -21,10 +21,14 @@ const headerAnimateVars: Variants = {
 
 const hoverMenuVars: Variants = {
     init: {
-        textDecoration: "none",
+        // @ts-ignore
+        "--after-x": "translateX(-40%)",
+        "--after-opacity": "0",
     },
     hover: {
-        textDecoration: "underline",
+        // @ts-ignore
+        "--after-x": "translateX(0)",
+        "--after-opacity": "1",
     },
 }
 
@@ -124,7 +128,9 @@ const Header = ({ siteTitle }: HeaderProps) => {
                                         menu && (
                                             <motion.li
                                                 key={menu.link}
-                                                className={"group relative"}
+                                                className={
+                                                    "group relative header-menu__popup"
+                                                }
                                                 variants={hoverMenuVars}
                                                 initial={"init"}
                                                 whileHover={"hover"}
@@ -135,7 +141,7 @@ const Header = ({ siteTitle }: HeaderProps) => {
                                                 {menu.subMenu && (
                                                     <motion.ul
                                                         className={
-                                                            "z-10 font-gothic group-last:right-0 border-t-emerald-600 border-t-4 absolute max-w-[200px] min-w-[150px] shadow-lg bg-gray-100 w-full py-3 rounded"
+                                                            "z-10 font-gothic group-last:right-0 absolute max-w-[200px] min-w-[150px] shadow-lg bg-gray-100 w-full py-3 rounded"
                                                         }
                                                         variants={
                                                             popupAnimateVars
