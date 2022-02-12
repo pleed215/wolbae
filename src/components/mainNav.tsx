@@ -70,6 +70,7 @@ const MainNav: React.FC<MainNavProps> = ({ menuLinks }) => {
                                                             className={
                                                                 "hover:font-bold hover:bg-gray-200 border-b py-2 last:pt-2 last:border-b-0 px-2"
                                                             }
+                                                            onClick={() => {}}
                                                         >
                                                             {subMenu.name}
                                                         </li>

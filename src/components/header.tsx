@@ -10,8 +10,9 @@ import {
 } from "framer-motion"
 import { Site } from "../../graphql-types"
 import MainNav from "./mainNav"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import MobileNav from "./mobileNav"
+import useOutsideClickDetector from "../utils/hooks/useOutsideAlerter"
 
 const headerAnimateVars: Variants = {
     hidden: {
@@ -28,6 +29,8 @@ const Header = ({ siteTitle }: HeaderProps) => {
     const headerAnimate = useAnimation()
     const { scrollY } = useViewportScroll()
     const [toggleMobileMenu, setToggleMobileMenu] = useState(false)
+    const headerRef = useRef<HTMLElement>(null)
+    const clickedOutside = useOutsideClickDetector(headerRef)
     React.useEffect(() => {
         scrollY.onChange(async () => {
             if (scrollY.get() > 40) {
@@ -57,6 +60,12 @@ const Header = ({ siteTitle }: HeaderProps) => {
         setToggleMobileMenu(prev => !prev)
     }
 
+    useEffect(() => {
+        if (clickedOutside) {
+            setToggleMobileMenu(false)
+        }
+    }, [clickedOutside])
+
     return (
         <motion.header
             variants={headerAnimateVars}
@@ -64,6 +73,7 @@ const Header = ({ siteTitle }: HeaderProps) => {
             initial={"show"}
             transition={{ default: 1 }}
             className={"font-jua w-full shadow flex  flex-col"}
+            ref={headerRef}
         >
             <div className={"w-full bg-lime-900"}>
                 <div

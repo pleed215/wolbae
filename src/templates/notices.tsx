@@ -58,13 +58,23 @@ const NoticeList: React.FC<PageProps<AllMdxType, PageContext>> = ({
                             }
                             key={node.id}
                         >
-                            <div className={"col-span-8 text-left pl-2"}>
+                            <div
+                                className={"col-span-8 text-left pl-2 my-auto"}
+                            >
                                 {node.frontmatter?.title}
                             </div>
-                            <div className={"col-span-2"}>
+                            <div
+                                className={
+                                    "col-span-2 sm:text-md text-xs my-auto"
+                                }
+                            >
                                 {node.frontmatter?.author}
                             </div>
-                            <div className={"col-span-2"}>
+                            <div
+                                className={
+                                    "col-span-2 sm:text-md text-xs my-auto"
+                                }
+                            >
                                 {node.frontmatter?.date}
                             </div>
                         </div>

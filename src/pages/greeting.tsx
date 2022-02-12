@@ -39,7 +39,7 @@ const Greeting = () => {
                         >
                             <div
                                 className={
-                                    "w-32 aspect-1 shrink-0 rounded-full mr-8 bg-emerald-700 flex items-center justify-center"
+                                    "w-72 aspect-1 rounded-full mr-8 bg-emerald-700 flex items-center justify-center"
                                 }
                             >
                                 <FontAwesomeIcon
@@ -68,7 +68,7 @@ const Greeting = () => {
                         >
                             <div
                                 className={
-                                    "w-32 aspect-1 shrink-0 rounded-full mr-8 bg-lime-500 flex items-center justify-center"
+                                    "w-72 aspect-1 rounded-full mr-8 bg-lime-500 flex items-center justify-center"
                                 }
                             >
                                 <FontAwesomeIcon
@@ -96,7 +96,7 @@ const Greeting = () => {
                         >
                             <div
                                 className={
-                                    "w-32 aspect-1 shrink-0 rounded-full mr-8 bg-emerald-700 flex items-center justify-center"
+                                    "w-72 aspect-1 rounded-full mr-8 bg-emerald-700 flex items-center justify-center"
                                 }
                             >
                                 <FontAwesomeIcon
