@@ -29,7 +29,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ show, menuLinks }) => {
             variants={mobileMenuAnimateVars}
             animate={show ? "show" : "hidden"}
             className={
-                "absolute right-0 top-12 z-20 w-full bg-gray-200 origin-top-right border-t border-gray-400"
+                "absolute right-0 top-12 z-20 w-full bg-gray-200 origin-top-right border-t border-gray-400 block sm:hidden"
             }
             initial={"hidden"}
         >

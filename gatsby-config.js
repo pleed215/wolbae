@@ -6,7 +6,7 @@ module.exports = {
         title: `월배요양병원`,
         description: `대구 달서구에 진천동에 위치한 친절하고 깨끗한 요양병원입니다. 달서구 월배로 119.`,
         author: `월배요양병원`,
-        siteUrl: `https://wbwoori.co.kr`,
+        siteUrl: `https://wolbae.co.kr`,
         menuLinks: [
             {
                 name: "병원소개",
@@ -62,20 +62,16 @@ module.exports = {
                         link: "/treat-system",
                     },
                     {
-                        name: "한방진료 프로그램",
-                        link: "/korean-medical",
-                    },
-                    {
-                        name: "인지기능 프로그램",
-                        link: "/cognitive-treat",
-                    },
-                    {
                         name: "물리치료 프로그램",
                         link: "/physical-therapy",
                     },
                     {
-                        name: "사회복지 프로그램",
+                        name: "인지기능 프로그램",
                         link: "/social-welfare",
+                    },
+                    {
+                        name: "한방진료 프로그램",
+                        link: "/korean-medical",
                     },
                 ],
             },

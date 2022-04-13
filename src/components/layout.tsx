@@ -18,6 +18,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowUp, faHome } from "@fortawesome/free-solid-svg-icons"
 import { StaticImage } from "gatsby-plugin-image"
+import clsx from "clsx"
 
 const upFabAnimateVariants: Variants = {
     show: {
@@ -32,12 +33,14 @@ type LayoutProps = {
     useHero?: boolean
     pageTitle?: string
     menuInfo?: string
+    fullWidth?: boolean
 }
 
 const Layout: React.FC<LayoutProps> = ({
     useHero,
     pageTitle,
     menuInfo,
+    fullWidth,
     children,
 }) => {
     const upFabAnimate = useAnimation()
@@ -125,7 +128,11 @@ const Layout: React.FC<LayoutProps> = ({
                         </div>
                     </>
                 )}
-                <main className={"layout mx-auto"}>{children}</main>
+                <main
+                    className={clsx("mx-auto", fullWidth ? "w-full" : "layout")}
+                >
+                    {children}
+                </main>
                 <motion.button
                     variants={upFabAnimateVariants}
                     animate={upFabAnimate}

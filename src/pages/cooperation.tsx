@@ -2,8 +2,8 @@ import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Dot from "../images/icons/four-dot.svg"
-import { StaticImage } from "gatsby-plugin-image"
-import { FormEventHandler, useState } from "react"
+import {StaticImage} from "gatsby-plugin-image"
+import {FormEventHandler, useState} from "react"
 import fetch from "isomorphic-fetch"
 
 const Cooperation = () => {
@@ -43,6 +43,8 @@ const Cooperation = () => {
                 description={"월배요양병원 대외협력 소개 페이지입니다."}
             />
             <div className={"mt-10"}>
+
+                {/*
                 <div className={"w-full flex items-center text-2xl font-jua"}>
                     <Dot className={"mr-4 text-2xl"} />
                     <h1>
@@ -102,12 +104,12 @@ const Cooperation = () => {
                     도움이 필요하신 장기요양기관에서는 연락해주시어 협력 관계를
                     맺을 수 있도록 협조하겠습니다.
                 </h4>
-
+*/}
                 <div className={"w-full flex items-center text-2xl font-jua"}>
-                    <Dot className={"mr-4"} />
+                    <Dot className={"mr-4"}/>
                     <h1>봉사활동 신청</h1>
                 </div>
-                <hr className={"my-3"} />
+                <hr className={"my-3"}/>
                 <div
                     className={
                         "w-full grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4"

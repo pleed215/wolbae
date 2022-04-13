@@ -16,7 +16,7 @@
 
 
 .layout {
-  @apply lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm max-w-screen-xs w-full;
+  @apply lg:max-w-screen-lg md:max-w-screen-md sm:max-w-screen-sm max-w-[450px] w-full;
 }
 
 .non-insurance__table-body {

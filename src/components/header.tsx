@@ -13,6 +13,7 @@ import MainNav from "./mainNav"
 import { useEffect, useRef, useState } from "react"
 import MobileNav from "./mobileNav"
 import useOutsideClickDetector from "../utils/hooks/useOutsideAlerter"
+import { StaticImage } from "gatsby-plugin-image"
 
 const headerAnimateVars: Variants = {
     hidden: {
@@ -102,19 +103,23 @@ const Header = ({ siteTitle }: HeaderProps) => {
                 }
             >
                 <div className={"layout flex sm:justify-start justify-between"}>
-                    <h1 className={"lg:mr-40 mr-20 min-w-max inline"}>
+                    <h1 className={"lg:mr-40 mr-20 inline"}>
                         <Link className={"text-black"} to="/">
-                            {siteTitle}
+                            <StaticImage
+                                src={"../images/logo.png"}
+                                width={140}
+                                alt={"월배요양병원 로고"}
+                            />
                         </Link>
                     </h1>
-                    <nav className={"w-full w-full sm:inline hidden"}>
+                    <nav className={"w-full w-full sm:inline hidden my-auto"}>
                         {site.siteMetadata && site.siteMetadata.menuLinks && (
                             <MainNav menuLinks={site.siteMetadata.menuLinks} />
                         )}
                     </nav>
                     <div
                         id={"mobile-menu__anchor"}
-                        className={"relative sm:hidden inline"}
+                        className={"relative sm:hidden inline my-auto"}
                     >
                         <button
                             className={"outline-none"}

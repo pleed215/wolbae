@@ -23,6 +23,7 @@ exports.createSchemaCustomization = ({ actions }) => {
         type SiteMetadata {
             menuLinks: [MenuLinks]!
         }
+        
         type MenuLinks {
             name: String!
             link: String!

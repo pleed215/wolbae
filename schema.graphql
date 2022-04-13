@@ -187,6 +187,11 @@ type DirectoryGroupConnection {
     totalCount: Int!
 }
 
+type Facility {
+    name: String!
+    sub: [SubFacility]!
+}
+
 type File implements Node {
     absolutePath: String!
     accessTime(
@@ -872,6 +877,7 @@ type SiteGroupConnection {
 type SiteMetadata {
     author: String
     description: String
+    facilities: [Facility]!
     menuLinks: [MenuLinks]!
     siteUrl: String
     title: String
@@ -974,6 +980,11 @@ type SitePluginGroupConnection {
 type SiteSiteMetadata {
     description: String
     title: String
+}
+
+type SubFacility {
+    image: String!
+    name: String!
 }
 
 type SubMenu {
@@ -2098,6 +2109,11 @@ enum SiteFieldsEnum {
     port
     siteMetadata___author
     siteMetadata___description
+    siteMetadata___facilities
+    siteMetadata___facilities___name
+    siteMetadata___facilities___sub
+    siteMetadata___facilities___sub___image
+    siteMetadata___facilities___sub___name
     siteMetadata___menuLinks
     siteMetadata___menuLinks___link
     siteMetadata___menuLinks___name
@@ -2535,6 +2551,15 @@ input DuotoneGradient {
     shadow: String!
 }
 
+input FacilityFilterInput {
+    name: StringQueryOperatorInput
+    sub: SubFacilityFilterListInput
+}
+
+input FacilityFilterListInput {
+    elemMatch: FacilityFilterInput
+}
+
 input FileFilterInput {
     absolutePath: StringQueryOperatorInput
     accessTime: DateQueryOperatorInput
@@ -2874,6 +2899,7 @@ input SiteFunctionSortInput {
 input SiteMetadataFilterInput {
     author: StringQueryOperatorInput
     description: StringQueryOperatorInput
+    facilities: FacilityFilterListInput
     menuLinks: MenuLinksFilterListInput
     siteUrl: StringQueryOperatorInput
     title: StringQueryOperatorInput
@@ -2931,6 +2957,15 @@ input StringQueryOperatorInput {
     ne: String
     nin: [String]
     regex: String
+}
+
+input SubFacilityFilterInput {
+    image: StringQueryOperatorInput
+    name: StringQueryOperatorInput
+}
+
+input SubFacilityFilterListInput {
+    elemMatch: SubFacilityFilterInput
 }
 
 input SubMenuFilterInput {
