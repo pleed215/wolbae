@@ -2,8 +2,56 @@ import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Dot from "../images/icons/four-dot.svg"
+import { graphql, PageProps } from "gatsby"
+import { FileConnection } from "../../graphql-types"
+import CardText, { CardTextProp } from "../components/cardtext"
 
-const PhysicalTherapy = () => {
+type DataType = {
+    allFile: FileConnection
+}
+const PhysicalTherapy: React.FC<PageProps<DataType>> = ({ data }) => {
+    console.log(data)
+
+    const movingTherapies: Omit<CardTextProp, "className">[] = [
+        {
+            title: "지속적 운동 치료기(CPM)",
+            hoverText:
+                "관절의 경직 및 유착 등을 방지하고자 개발 되어진 운동기구로서, 지속적인 수동 운동을 통하여 부작용을 최소화하며 관절의 기능을 빠르게 회복시키기 위해 개발된 재활운동 기구입니다. 관절의 변형을 방지 및 운동범위를 정상적으로 회복시켜 줍니다.",
+            image: data.allFile.edges[0].node.childImageSharp?.gatsbyImageData,
+        },
+        {
+            title: "기립 테이블(Standing table)",
+            hoverText:
+                "척수 손상이나 뇌졸증 등으로 손상을 받은 환자분들의 근력강화, 골다공증 예방, 근 경련, 구축 감소, 욕창 방지, 선자세 경험을 위해 사용하는 장비입니다.",
+            image: data.allFile.edges[3].node.childImageSharp?.gatsbyImageData,
+        },
+        {
+            title: "경사침대(Tilting table)",
+            hoverText:
+                "척추 손상 환자, 뇌졸중 환자 등 독립적으로 서기 어려운 환자에게 선 자세를 경험하게 해주는 운동기구로써, 기립훈련, 혈액순환 증진, 하지근력 강화, 요로결석 예방, 기립성 저혈압 방지 등의 효과가 있습니다.",
+            image: data.allFile.edges[5].node.childImageSharp?.gatsbyImageData,
+        },
+    ]
+    const painTherapies: Omit<CardTextProp, "className">[] = [
+        {
+            title: "중주파 간섭 치료기(ICT)",
+            hoverText:
+                "두 개 혹은 그 이상의 서로 다른 중주파 전료를 일련의 지점에서 교차통전 시켰을 때 간섭현상으로 새로운 저주파 전류를 발생시켜, 이를 사용하여 전기 치료를 합니다. 혈관 확장에 의한 국소 및 원격 혈류량 증진과 대사과정을 촉진시켜 부종 및 혈종 흡수, 염증 완화, 진통효과 창상 치유과정을 촉진 시키는 효과가 있습니다.",
+            image: data.allFile.edges[2].node.childImageSharp?.gatsbyImageData,
+        },
+        {
+            title: "경피적 신경자극 치료(TENS)",
+            hoverText:
+                "저주파 전류를 이용하여 피부의 말초신경을 자극, 다양한 원인으로 초래되는 통증을 치료하는 방법입니다.",
+            image: data.allFile.edges[4].node.childImageSharp?.gatsbyImageData,
+        },
+        {
+            title: "온열요법",
+            hoverText:
+                "적외산, 온습포를 이용하여 국소적인 열감을 주어 혈관을 팽창시키고 손상된 근육 세포 등을 자연적으로 치료되도록 돕는 것입니다.",
+            image: data.allFile.edges[1].node.childImageSharp?.gatsbyImageData,
+        },
+    ]
     return (
         <Layout
             useHero
@@ -30,25 +78,16 @@ const PhysicalTherapy = () => {
                     프로그램은 환자가 최대한 빠른 시간에 정상에 가까운 생활을
                     영위할 수 있도록 손상된 운동 기능을 회복시켜 줍니다.
                 </h4>
-                <div className={"grid sm:grid-cols-2 grid-cols-1 gap-4 my-8"}>
-                    <div className={"h-64 w-full bg-amber-100"}>
-                        지속적 수동훈련(CPM)
-                        <p>
-                            스스로 운동이 불가능한 환자에게 지속적이고, 수동적인
-                            운동을 통하여 관절의 기능을 보다 빠르게 회복 시키기
-                            위한 운동치료
-                        </p>
-                    </div>
-
-                    <div className={"h-64 w-full bg-amber-100"}>
-                        보행훈련(스탠딩 테이블)
-                        <p>
-                            편마비, 사지마비, 뇌성마비 등의 중추신경계 질환이나
-                            보행동작에 제한이 있는 환자에게 기능적인 보행훈련을
-                            실시함으로써 최대한 효율적이고 정상적인 보행을 할 수
-                            있도록 유도
-                        </p>
-                    </div>
+                <div className={"grid sm:grid-cols-3 grid-cols-1 gap-4 my-8"}>
+                    {movingTherapies.map(d => (
+                        <CardText
+                            key={d.title}
+                            {...d}
+                            className={
+                                "bg-blue-100 w-full h-72 flex items-center justify-center relative group grid"
+                            }
+                        />
+                    ))}
                 </div>
                 <div className={"flex items-center"}>
                     <Dot className={"mr-2"} />
@@ -62,78 +101,16 @@ const PhysicalTherapy = () => {
                     병행하여 사욤함으로써 통증이 지속적으로 경감되는 효과를
                     가지는 치료입니다.
                 </h4>
-                <div className={"grid sm:grid-cols-2 grid-cols-1 gap-4 my-8"}>
-                    <div className={"h-64 w-full bg-amber-100"}>
-                        전기 자극 치료
-                        <p>
-                            중주파 간섭치료(ICT), 경피신경자극치료(TENS) 등을
-                            이용하여 혈관확장과 통각세포를 자극하여 근수축을
-                            도모하여 진통효과를 주는 치료입니다.
-                        </p>
-                    </div>
-
-                    <div className={"h-64 w-full bg-amber-100"}>
-                        온열요법
-                        <p>
-                            적외산, 온습포를 이용하여 국소적인 열감을 주어
-                            혈관을 팽창시키고 손상된 근육 세포 등을 자연적으로
-                            치료되도록 돕는 것입니다.
-                        </p>
-                    </div>
-                </div>
-                <div className={"flex items-center"}>
-                    <Dot className={"mr-2"} />
-                    <h1 className={"font-bold text-2xl"}>치료 기기</h1>
-                </div>
-                <hr className={"my-4"} />
-                <div className={"grid sm:grid-cols-2 grid-cols-1 gap-4 my-8"}>
-                    <div className={"h-64 w-full bg-amber-100"}>
-                        중주파 간섭 치료기(ICT)
-                        <p>
-                            두 개 혹은 그 이상의 서로 다른 중주파 전료를 일련의
-                            지점에서 교차통전 시켰을 때 간섭현상으로 새로운
-                            저주파 전류를 발생시켜, 이를 사용하여 전기 치료를
-                            합니다. 혈관 확장에 의한 국소 및 원격 혈류량 증진과
-                            대사과정을 촉진시켜 부종 및 혈종 흡수, 염증 완화,
-                            진통효과 창상 치유과정을 촉진 시키는 효과가
-                            있습니다.
-                        </p>
-                    </div>
-                    <div className={"h-64 w-full bg-amber-100"}>
-                        경피적 신경자극 치료(TENS)
-                        <p>
-                            저주파 전류를 이용하여 피부의 말초신경을 자극,
-                            다양한 원인으로 초래되는 통증을 치료하는 방법입니다.
-                        </p>
-                    </div>
-                    <div className={"h-64 w-full bg-amber-100"}>
-                        경사침대(Tilting table)
-                        <p>
-                            척추 손상 환자, 뇌졸중 환자 등 독립적으로 서기
-                            어려운 환자에게 선 자세를 경험하게 해주는
-                            운동기구로써, 기립훈련, 혈액순환 증진, 하지근력
-                            강화, 요로결석 예방, 기립성 저혈압 방지 등의 효과가
-                            있습니다.
-                        </p>
-                    </div>
-                    <div className={"h-64 w-full bg-amber-100"}>
-                        지속적 운동 치료기(CPM)
-                        <p>
-                            관절의 경직 및 유착 등을 방지하고자 개발 되어진
-                            운동기구로서, 지속적인 수동 운동을 통하여 부작용을
-                            최소화하며 관절의 기능을 빠르게 회복시키기 위해
-                            개발된 재활운동 기구입니다. 관절의 변형을 방지 및
-                            운동범위를 정상적으로 회복시켜 줍니다.
-                        </p>
-                    </div>
-                    <div className={"h-64 w-full bg-amber-100"}>
-                        기립 테이블(Standing table)
-                        <p>
-                            척수 손상이나 뇌졸증 등으로 손상을 받은 환자분들의
-                            근력강화, 골다공증 예방, 근 경련, 구축 감소, 욕창
-                            방지, 선자세 경험을 위해 사용하는 장비입니다.
-                        </p>
-                    </div>
+                <div className={"grid sm:grid-cols-3 grid-cols-1 gap-4 my-8"}>
+                    {painTherapies.map(d => (
+                        <CardText
+                            key={d.title}
+                            {...d}
+                            className={
+                                "bg-blue-100 w-full h-72 flex items-center justify-center relative group grid"
+                            }
+                        />
+                    ))}
                 </div>
             </div>
         </Layout>
@@ -141,3 +118,19 @@ const PhysicalTherapy = () => {
 }
 
 export default PhysicalTherapy
+export const query = graphql`
+    query physicalImages {
+        allFile(
+            filter: { relativePath: { regex: "/(pt_)(\\w+).(jpg|png|JPG|PNG)/g" } }
+            sort: { fields: extension, order: ASC }
+        ) {
+            edges {
+                node {
+                    childImageSharp {
+                        gatsbyImageData(width: 480)
+                    }
+                }
+            }
+        }
+    }
+`

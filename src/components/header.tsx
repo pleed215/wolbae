@@ -82,14 +82,16 @@ const Header = ({ siteTitle }: HeaderProps) => {
                         "layout w-full h-10 text-lg text-white flex items-center justify-between mx-auto lg:px-0 px-4"
                     }
                 >
-                    <div className={"flex items-center"}>
-                        <FontAwesomeIcon
-                            icon={faPhone}
-                            size={"1x"}
-                            className={"mr-4"}
-                        />
-                        <h1>010-5163-8181</h1>
-                    </div>
+                    <a href={"tel:010-5163-8181"}>
+                        <div className={"flex items-center"}>
+                            <FontAwesomeIcon
+                                icon={faPhone}
+                                size={"1x"}
+                                className={"mr-4"}
+                            />
+                            <h1>010-5163-8181</h1>
+                        </div>
+                    </a>
                     <div>
                         <Link to={"/way-to-come"}>
                             <h4>찾아오시는 길</h4>
