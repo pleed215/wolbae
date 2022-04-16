@@ -4,7 +4,11 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Helmet } from "react-helmet"
-import { FileConnection, MdxConnection } from "../../graphql-types"
+import {
+    FileConnection,
+    MdxConnection,
+    File as FileType,
+} from "../../graphql-types"
 import { Map, MapMarker } from "react-kakao-maps-sdk"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -20,7 +24,9 @@ import TypeIt from "typeit-react"
 type AllMdxType = {
     allMdx: MdxConnection
     allFile: FileConnection
-    indexImage: FileConnection
+    index1: FileType
+    index2: FileType
+    index3: FileType
 }
 
 const sliderSettings: Settings = {
@@ -90,10 +96,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                             className={"w-full h-full"}
                             style={{ gridArea: "1/1" }}
                             alt={"index1"}
-                            image={
-                                data.indexImage.edges[0].node.childImageSharp
-                                    ?.gatsbyImageData
-                            }
+                            image={data.index1.childImageSharp?.gatsbyImageData}
                         />
                     </div>
                 </div>
@@ -103,10 +106,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                             className={"w-full h-full"}
                             alt={"index1"}
                             style={{ gridArea: "1/1" }}
-                            image={
-                                data.indexImage.edges[1].node.childImageSharp
-                                    ?.gatsbyImageData
-                            }
+                            image={data.index2.childImageSharp?.gatsbyImageData}
                         />
                         <div
                             style={{ gridArea: "1/1" }}
@@ -138,10 +138,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                             className={"w-full h-full"}
                             style={{ gridArea: "1/1" }}
                             alt={"index1"}
-                            image={
-                                data.indexImage.edges[2].node.childImageSharp
-                                    ?.gatsbyImageData
-                            }
+                            image={data.index3.childImageSharp?.gatsbyImageData}
                         />
                         <div
                             style={{ gridArea: "1/1" }}
@@ -446,18 +443,19 @@ export const query = graphql`
                 }
             }
         }
-        indexImage: allFile(
-            filter: {
-                relativePath: { regex: "/(index)(\\d).(jpg|png|JPG|PNG)/g" }
+        index1: file(relativePath: { eq: "index1.jpg" }) {
+            childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
             }
-            sort: { fields: relativePath, order: ASC }
-        ) {
-            edges {
-                node {
-                    childImageSharp {
-                        gatsbyImageData(layout: FULL_WIDTH)
-                    }
-                }
+        }
+        index2: file(relativePath: { eq: "index2.jpg" }) {
+            childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
+            }
+        }
+        index3: file(relativePath: { eq: "index3.jpg" }) {
+            childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
             }
         }
     }
