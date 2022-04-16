@@ -3,11 +3,11 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Dot from "../images/icons/four-dot.svg"
 import { graphql, PageProps } from "gatsby"
-import { FileConnection } from "../../graphql-types"
+import { File as FileType } from "../../graphql-types"
 import CardText, { CardTextProp } from "../components/cardtext"
 
 type DataType = {
-    allFile: FileConnection
+    [name: string]: FileType
 }
 const PhysicalTherapy: React.FC<PageProps<DataType>> = ({ data }) => {
     const movingTherapies: Omit<CardTextProp, "className">[] = [
@@ -15,19 +15,19 @@ const PhysicalTherapy: React.FC<PageProps<DataType>> = ({ data }) => {
             title: "지속적 운동 치료기(CPM)",
             hoverText:
                 "관절의 경직 및 유착 등을 방지하고자 개발 되어진 운동기구로서, 지속적인 수동 운동을 통하여 부작용을 최소화하며 관절의 기능을 빠르게 회복시키기 위해 개발된 재활운동 기구입니다. 관절의 변형을 방지 및 운동범위를 정상적으로 회복시켜 줍니다.",
-            image: data.allFile.edges[4].node.childImageSharp?.gatsbyImageData,
+            image: data.cpm.childImageSharp?.gatsbyImageData,
         },
         {
             title: "기립 테이블(Standing table)",
             hoverText:
                 "척수 손상이나 뇌졸증 등으로 손상을 받은 환자분들의 근력강화, 골다공증 예방, 근 경련, 구축 감소, 욕창 방지, 선자세 경험을 위해 사용하는 장비입니다.",
-            image: data.allFile.edges[0].node.childImageSharp?.gatsbyImageData,
+            image: data.standing.childImageSharp?.gatsbyImageData,
         },
         {
             title: "경사침대(Tilting table)",
             hoverText:
                 "척추 손상 환자, 뇌졸중 환자 등 독립적으로 서기 어려운 환자에게 선 자세를 경험하게 해주는 운동기구로써, 기립훈련, 혈액순환 증진, 하지근력 강화, 요로결석 예방, 기립성 저혈압 방지 등의 효과가 있습니다.",
-            image: data.allFile.edges[5].node.childImageSharp?.gatsbyImageData,
+            image: data.tilting.childImageSharp?.gatsbyImageData,
         },
     ]
     const painTherapies: Omit<CardTextProp, "className">[] = [
@@ -35,19 +35,19 @@ const PhysicalTherapy: React.FC<PageProps<DataType>> = ({ data }) => {
             title: "중주파 간섭 치료기(ICT)",
             hoverText:
                 "두 개 혹은 그 이상의 서로 다른 중주파 전료를 일련의 지점에서 교차통전 시켰을 때 간섭현상으로 새로운 저주파 전류를 발생시켜, 이를 사용하여 전기 치료를 합니다. 혈관 확장에 의한 국소 및 원격 혈류량 증진과 대사과정을 촉진시켜 부종 및 혈종 흡수, 염증 완화, 진통효과 창상 치유과정을 촉진 시키는 효과가 있습니다.",
-            image: data.allFile.edges[2].node.childImageSharp?.gatsbyImageData,
+            image: data.ict.childImageSharp?.gatsbyImageData,
         },
         {
             title: "경피적 신경자극 치료(TENS)",
             hoverText:
                 "저주파 전류를 이용하여 피부의 말초신경을 자극, 다양한 원인으로 초래되는 통증을 치료하는 방법입니다.",
-            image: data.allFile.edges[3].node.childImageSharp?.gatsbyImageData,
+            image: data.tens.childImageSharp?.gatsbyImageData,
         },
         {
             title: "온열요법",
             hoverText:
                 "적외선, 온습포를 이용하여 국소적인 열감을 주어 혈관을 팽창시키고 손상된 근육 세포 등을 자연적으로 치료되도록 돕는 것입니다.",
-            image: data.allFile.edges[1].node.childImageSharp?.gatsbyImageData,
+            image: data.hotpack.childImageSharp?.gatsbyImageData,
         },
     ]
     return (
@@ -118,16 +118,34 @@ const PhysicalTherapy: React.FC<PageProps<DataType>> = ({ data }) => {
 export default PhysicalTherapy
 export const query = graphql`
     query physicalImages {
-        allFile(
-            filter: { relativePath: { regex: "/(phy_)(\\d).(jpg|png)/g" } }
-            sort: { fields: extension, order: ASC }
-        ) {
-            edges {
-                node {
-                    childImageSharp {
-                        gatsbyImageData(width: 400)
-                    }
-                }
+        cpm: file(relativePath: { eq: "phy_1.png" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        }
+        hotpack: file(relativePath: { eq: "phy_2.jpg" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        }
+        ict: file(relativePath: { eq: "phy_3.jpg" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        }
+        standing: file(relativePath: { eq: "phy_4.jpg" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        }
+        tens: file(relativePath: { eq: "phy_5.png" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        }
+        tilting: file(relativePath: { eq: "phy_6.png" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
             }
         }
     }
