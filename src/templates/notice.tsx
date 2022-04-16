@@ -36,16 +36,26 @@ const NoticeDetail: React.FC<PageProps<MarkdownType, { slug: string }>> = ({
                     </h1>
                 </div>
                 <div
-                    className={"flex justify-between items-center text-md p-2"}
+                    className={
+                        "flex sm:flex-row flex-col justify-between items-center text-md p-2"
+                    }
                 >
-                    <h4 className={"text-gray-600"}>
+                    <h4 className={"sm:w-2/3 w-full text-left text-gray-600"}>
                         {mdx.frontmatter?.subtitle}
                     </h4>
-                    <h6>
-                        작성자: {mdx.frontmatter?.author}
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 날짜:
-                        {mdx.frontmatter?.date}
-                    </h6>
+                    <div
+                        className={
+                            "sm:w-1/3 w-full flex justify-between items-center"
+                        }
+                    >
+                        <h6 className={"mr-2"}>
+                            작성자: {mdx.frontmatter?.author}
+                        </h6>
+                        <h6>
+                            날짜:
+                            {mdx.frontmatter?.date}
+                        </h6>
+                    </div>
                 </div>
                 <hr className={"mb-3"} />
                 <div className={"markdown w-full"}>
