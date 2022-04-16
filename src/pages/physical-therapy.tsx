@@ -119,7 +119,7 @@ export default PhysicalTherapy
 export const query = graphql`
     query physicalImages {
         allFile(
-            filter: { relativePath: { regex: "/(pt_)(\\w+).(jpg|png|JPG|PNG)/g" } }
+            filter: { relativePath: { regex: "/(pt_)(\\w+).(jpg|png)/g" } }
             sort: { fields: extension, order: ASC }
         ) {
             edges {
