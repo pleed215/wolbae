@@ -119,13 +119,13 @@ export default PhysicalTherapy
 export const query = graphql`
     query physicalImages {
         allFile(
-            filter: { relativePath: { regex: "/(phy_)(\\w+).(jpg|png)/g" } }
+            filter: { relativePath: { regex: "/(phy_)(\\d).(jpg|png)/g" } }
             sort: { fields: extension, order: ASC }
         ) {
             edges {
                 node {
                     childImageSharp {
-                        gatsbyImageData(width: 480)
+                        gatsbyImageData(layout: CONSTRAINED)
                     }
                 }
             }
