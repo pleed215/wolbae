@@ -10,20 +10,18 @@ type DataType = {
     allFile: FileConnection
 }
 const PhysicalTherapy: React.FC<PageProps<DataType>> = ({ data }) => {
-    console.log(data)
-
     const movingTherapies: Omit<CardTextProp, "className">[] = [
         {
             title: "지속적 운동 치료기(CPM)",
             hoverText:
                 "관절의 경직 및 유착 등을 방지하고자 개발 되어진 운동기구로서, 지속적인 수동 운동을 통하여 부작용을 최소화하며 관절의 기능을 빠르게 회복시키기 위해 개발된 재활운동 기구입니다. 관절의 변형을 방지 및 운동범위를 정상적으로 회복시켜 줍니다.",
-            image: data.allFile.edges[0].node.childImageSharp?.gatsbyImageData,
+            image: data.allFile.edges[4].node.childImageSharp?.gatsbyImageData,
         },
         {
             title: "기립 테이블(Standing table)",
             hoverText:
                 "척수 손상이나 뇌졸증 등으로 손상을 받은 환자분들의 근력강화, 골다공증 예방, 근 경련, 구축 감소, 욕창 방지, 선자세 경험을 위해 사용하는 장비입니다.",
-            image: data.allFile.edges[3].node.childImageSharp?.gatsbyImageData,
+            image: data.allFile.edges[0].node.childImageSharp?.gatsbyImageData,
         },
         {
             title: "경사침대(Tilting table)",
@@ -43,12 +41,12 @@ const PhysicalTherapy: React.FC<PageProps<DataType>> = ({ data }) => {
             title: "경피적 신경자극 치료(TENS)",
             hoverText:
                 "저주파 전류를 이용하여 피부의 말초신경을 자극, 다양한 원인으로 초래되는 통증을 치료하는 방법입니다.",
-            image: data.allFile.edges[4].node.childImageSharp?.gatsbyImageData,
+            image: data.allFile.edges[3].node.childImageSharp?.gatsbyImageData,
         },
         {
             title: "온열요법",
             hoverText:
-                "적외산, 온습포를 이용하여 국소적인 열감을 주어 혈관을 팽창시키고 손상된 근육 세포 등을 자연적으로 치료되도록 돕는 것입니다.",
+                "적외선, 온습포를 이용하여 국소적인 열감을 주어 혈관을 팽창시키고 손상된 근육 세포 등을 자연적으로 치료되도록 돕는 것입니다.",
             image: data.allFile.edges[1].node.childImageSharp?.gatsbyImageData,
         },
     ]

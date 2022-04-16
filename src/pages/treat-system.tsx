@@ -6,6 +6,7 @@ import CardText from "../components/cardtext"
 import type { CardTextProp } from "../components/cardtext"
 import { graphql, PageProps } from "gatsby"
 import { FileConnection } from "../../graphql-types"
+import { StaticImage } from "gatsby-plugin-image"
 
 type AllFileDataType = {
     allFile: FileConnection
@@ -68,8 +69,20 @@ const TreatSystem: React.FC<PageProps<AllFileDataType>> = ({ data }) => {
                 </div>
                 <hr className={"my-4"} />
                 <div className={"w-full grid sm:grid-cols-2 grid-cols-1 gap-4"}>
-                    <div className={"bg-blue-100 w-full h-72"}></div>
-                    <div className={"bg-blue-100 w-full h-72"}></div>
+                    <div className={"bg-blue-100 w-full h-72"}>
+                        <StaticImage
+                            src={"../images/jinryo1.jpg"}
+                            alt={"월배요양병원"}
+                            className={"w-full h-full"}
+                        />
+                    </div>
+                    <div className={"bg-blue-100 w-full h-72"}>
+                        <StaticImage
+                            src={"../images/jinryo2.jpg"}
+                            alt={"월배요양병원"}
+                            className={"w-full h-full"}
+                        />
+                    </div>
                 </div>
                 <h1>
                     매일 전문의 회진으로 어르신들에게 세심하게 진료하고 있어

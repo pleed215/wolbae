@@ -13,7 +13,7 @@ const hoverTextAnimationVariants: Variants = {
         y: "0",
         opacity: 1,
         transition: {
-            duration: 0.5,
+            duration: 0.6,
             type: "spring",
         },
     },
@@ -64,7 +64,7 @@ const CardText: React.FC<CardTextProp> = ({
             <motion.div
                 variants={hoverTextAnimationVariants}
                 className={
-                    "absolute w-full h-full p-2 bg-lime-500/80 text-white font-jua text-md flex items-center justify-center"
+                    "absolute w-full h-full p-2 bg-lime-600/80 text-white font-jua text-md flex items-center justify-center"
                 }
             >
                 {hoverText}

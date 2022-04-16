@@ -1,11 +1,9 @@
 import * as React from "react"
 import { graphql, Link, PageProps } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import { Helmet } from "react-helmet"
-import { motion } from "framer-motion"
 import { FileConnection, MdxConnection } from "../../graphql-types"
 import { Map, MapMarker } from "react-kakao-maps-sdk"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -15,10 +13,24 @@ import {
     faPlus,
     faTrain,
 } from "@fortawesome/free-solid-svg-icons"
-
+import Slider, { Settings } from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import TypeIt from "typeit-react"
 type AllMdxType = {
     allMdx: MdxConnection
     allFile: FileConnection
+    indexImage: FileConnection
+}
+
+const sliderSettings: Settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+    autoplaySpeed: 4000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
 }
 
 const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
@@ -46,14 +58,116 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                 title="메인"
                 description={"월배요양병원 홈페이지 방문을 환영합니다"}
             />
-            {/*TODO: 이미지 캐리셀이나 슬라이더로 바꿀 예정.*/}
-            <div className={"mb-8"}>
-                <StaticImage
-                    src={"../images/herbal.jpg"}
-                    alt={"그냥 샘플 이미지"}
-                    layout={"fullWidth"}
-                />
-            </div>
+            <Slider
+                className={"mb-8 w-full max-h-[500px] overflow-hidden"}
+                {...sliderSettings}
+            >
+                <div>
+                    <div className={"w-full h-full grid "}>
+                        <div
+                            style={{ gridArea: "1/1" }}
+                            className={
+                                "w-full h-full flex items-center justify-center z-20 sm:text-3xl text-lg"
+                            }
+                        >
+                            <TypeIt
+                                options={{
+                                    cursor: false,
+                                    waitUntilVisible: true,
+                                }}
+                            >
+                                <h1
+                                    className={
+                                        "p-3 text-gray-700 text-neutral-700 bg-white/50"
+                                    }
+                                >
+                                    월배요양병원은 보건복지부 인증
+                                    요양기관입니다
+                                </h1>
+                            </TypeIt>
+                        </div>
+                        <GatsbyImage
+                            className={"w-full h-full"}
+                            style={{ gridArea: "1/1" }}
+                            alt={"index1"}
+                            image={
+                                data.indexImage.edges[0].node.childImageSharp
+                                    ?.gatsbyImageData
+                            }
+                        />
+                    </div>
+                </div>
+                <div>
+                    <div className={"w-full h-full grid"}>
+                        <GatsbyImage
+                            className={"w-full h-full"}
+                            alt={"index1"}
+                            style={{ gridArea: "1/1" }}
+                            image={
+                                data.indexImage.edges[1].node.childImageSharp
+                                    ?.gatsbyImageData
+                            }
+                        />
+                        <div
+                            style={{ gridArea: "1/1" }}
+                            className={
+                                "w-full h-full flex items-center justify-center z-20 sm:text-3xl text-lg"
+                            }
+                        >
+                            <TypeIt
+                                options={{
+                                    cursor: false,
+                                    waitUntilVisible: true,
+                                }}
+                            >
+                                <h1
+                                    className={
+                                        "p-3 text-gray-700 text-neutral-700 bg-white/50"
+                                    }
+                                >
+                                    정성을 다해, 따뜻한 마음으로 어르신을
+                                    모십니다
+                                </h1>
+                            </TypeIt>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div className={"w-full h-full grid"}>
+                        <GatsbyImage
+                            className={"w-full h-full"}
+                            style={{ gridArea: "1/1" }}
+                            alt={"index1"}
+                            image={
+                                data.indexImage.edges[2].node.childImageSharp
+                                    ?.gatsbyImageData
+                            }
+                        />
+                        <div
+                            style={{ gridArea: "1/1" }}
+                            className={
+                                "w-full h-full flex items-center justify-center z-20 sm:text-3xl text-lg"
+                            }
+                        >
+                            <TypeIt
+                                options={{
+                                    cursor: false,
+                                    waitUntilVisible: true,
+                                }}
+                            >
+                                <h1
+                                    className={
+                                        "p-3 text-gray-700 text-neutral-700 bg-white/50"
+                                    }
+                                >
+                                    내 집처럼 편안한 월배요양병원
+                                </h1>
+                            </TypeIt>
+                        </div>
+                    </div>
+                </div>
+            </Slider>
+
             <div
                 className={
                     "text-center max-w-md w-full py-16 flex items-center px-8 bg-lime-700 text-white my-auto mx-auto"
@@ -238,49 +352,59 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                     </div>
                 </div>
             </div>
-
-            <div className={"layout mx-auto my-8 grid "}>
-                <StaticImage
-                    src={"../images/certified.png"}
-                    alt={"인증로고"}
-                    layout={"fullWidth"}
-                    style={{ gridArea: "1/1" }}
-                />
-                <div
-                    style={{ gridArea: "1/1" }}
-                    className={"w-full  flex items-center justify-center z-20 "}
-                >
-                    <h1 className={"bg-white/50 px-4 py-2 text-3xl"}>
-                        월배요양병원은 보건복지부 인증 의료기관입니다.
-                    </h1>
-                </div>
-            </div>
-
             <div
                 className={
-                    "layout grid sm:grid-cols-9 grid-cols-3 gap-10 mt-8 mx-auto"
+                    "layout mx-auto my-8 grid md:grid-cols-2 grid-cols-1 gap-4"
                 }
             >
-                <div className={"col-span-3 bg-red-300 "}>
+                <div className={"w-full grid"}>
                     <StaticImage
-                        src={"../images/main1.jpg"}
-                        alt={"방역 철저"}
+                        src={"../images/banner1.png"}
+                        alt={"banner"}
+                        className={"bg-lime-600"}
+                        style={{ gridArea: "1/1" }}
                     />
+                    <div
+                        style={{ gridArea: "1/1" }}
+                        className={
+                            "z-10 w-2/3 flex  flex-col justify-center p-2 text-gray-100"
+                        }
+                    >
+                        <h4 className={"text-left text-xl font-bold"}>
+                            정성을 다하는 영양 서비스
+                        </h4>
+                        <p>
+                            직영 식당 운영 및 조리사, 영양사를 두어 어르신들
+                            건강 및 영양상태에 맞는 식사와, 높은 식단가의 우수한
+                            식자재를 제공하여 어르신들의 영양 건강에 최선을
+                            다하고 있습니다.
+                        </p>
+                    </div>
                 </div>
-                <div className={"col-span-3 bg-yellow-300"}>
-                    <StaticImage src={"../images/main2.jpg"} alt={"사회복지"} />
-                </div>
-                <div className={"bg-blue-300 col-span-3"}>
+                <div className={"w-full grid"}>
                     <StaticImage
-                        src={"../images/main3.jpg"}
-                        alt={"물리 치료:"}
+                        src={"../images/banner2.png"}
+                        alt={"banner"}
+                        className={"bg-emerald-600"}
+                        style={{ gridArea: "1/1" }}
                     />
+                    <div
+                        style={{ gridArea: "1/1" }}
+                        className={
+                            "z-10 w-2/3 flex  flex-col justify-center p-2 text-gray-100"
+                        }
+                    >
+                        <h4 className={"text-left text-xl font-bold"}>
+                            따듯한 간병과 간호, 우수한 진료 서비스
+                        </h4>
+                        <p>
+                            어르신들에게 친절한 간병 서비스를 제공하기 위해
+                            간병사, 간호사들에게 철저한 CS교육에 신경 쓰고
+                            있으며, 전문의가 진료하여 우수한 의료 서비스를
+                            받으실 수 있습니다.
+                        </p>
+                    </div>
                 </div>
-            </div>
-
-            <div className={"layout my-8 mx-auto"}>
-                여기는 마무리 메세지가 들어가자. 사진에 필터를 입혀서 그 위에
-                글을 쓰는 것도 좋을 것 같다.
             </div>
         </Layout>
     )
@@ -318,6 +442,20 @@ export const query = graphql`
                 node {
                     childImageSharp {
                         gatsbyImageData(width: 420)
+                    }
+                }
+            }
+        }
+        indexImage: allFile(
+            filter: {
+                relativePath: { regex: "/(index)(\\d).(jpg|png|JPG|PNG)/g" }
+            }
+            sort: { fields: relativePath, order: ASC }
+        ) {
+            edges {
+                node {
+                    childImageSharp {
+                        gatsbyImageData(layout: FULL_WIDTH)
                     }
                 }
             }
