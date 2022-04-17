@@ -13,11 +13,19 @@ const CounselVisitInfo = () => {
     const [name, setName] = useState("")
     const [content, setContent] = useState("")
     const [privateCheck, setPrivateCheck] = useState(false)
+    const [isSending, setIsSending] = useState(false)
 
     const onSubmit: FormEventHandler<HTMLFormElement> = e => {
-        if (!privateCheck) return
-
         e.preventDefault()
+        if (!privateCheck) {
+            alert(
+                "개인 정보 제공에 동의해주셔야 합니다. 개인정보는 상담 내용 확인 후 바로 파기합니다."
+            )
+            return
+        }
+        if (isSending) return
+
+        setIsSending(true)
         const url =
             "https://script.google.com/macros/s/AKfycbzJ6l2-jmZidrb5at1Xr5uwLBLJHYFS49WxQHYF7ZOYQJhEIoDpi6ys1MdY5f2EYUo7jQ/exec"
         const formBody = new FormData()
@@ -33,6 +41,7 @@ const CounselVisitInfo = () => {
             .then(res => res.json())
             .catch(() => alert("에러가 발생하였습니다."))
             .finally(() => {
+                setIsSending(false)
                 alert("신청이 완료 되었습니다.")
             })
     }
@@ -152,11 +161,13 @@ const CounselVisitInfo = () => {
                         </div>
                     </div>
                     <button
-                        className={
-                            "w-full text-center text-white bg-lime-700 py-3 rounded"
-                        }
+                        className={`w-full text-center text-white py-3 rounded ${
+                            isSending
+                                ? "pointer-events-none bg-gray-500"
+                                : "bg-lime-700"
+                        }`}
                     >
-                        제출
+                        {isSending ? "보내는 중...." : "제출"}
                     </button>
                 </form>
                 <div className={"flex items-center my-4 "}>

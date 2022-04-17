@@ -84,7 +84,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                             >
                                 <h1
                                     className={
-                                        "p-3 text-gray-700 text-neutral-700 bg-white/50"
+                                        "p-3 text-gray-700 text-neutral-700 bg-white/50 z-30"
                                     }
                                 >
                                     월배요양병원은 보건복지부 인증
@@ -122,7 +122,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                             >
                                 <h1
                                     className={
-                                        "p-3 text-gray-700 text-neutral-700 bg-white/50"
+                                        "p-3 text-gray-700 text-neutral-700 bg-white/50 z-30"
                                     }
                                 >
                                     정성을 다해, 따뜻한 마음으로 어르신을
@@ -154,7 +154,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                             >
                                 <h1
                                     className={
-                                        "p-3 text-gray-700 text-neutral-700 bg-white/50"
+                                        "p-3 text-gray-700 text-neutral-700 bg-white/50 z-30"
                                     }
                                 >
                                     내 집처럼 편안한 월배요양병원
@@ -179,7 +179,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
             </div>
             <div
                 className={
-                    "layout flex grid sm:grid-cols-12 grid-cols-4 gap-2 mx-auto mt-8"
+                    "layout flex grid lg:grid-cols-12 sm:grid-cols-8 grid-cols-4 gap-2 mx-auto mt-8"
                 }
             >
                 <div
@@ -279,14 +279,14 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                             ))}
                         </div>
                         <hr className={"my-2"} />
-                        <span className={"text-sm"}>
+                        <p className={"text-sm mb-2"}>
                             24시간 상담이 가능합니다. 방문상담은 3층 상담실.
-                        </span>
+                        </p>
                     </div>
                 </div>
                 <div
                     className={
-                        "col-span-4 sm:aspect-1 border-1 shadow-lg border-gray-400"
+                        "lg:col-span-4 sm:col-span-8 col-span-4 lg:aspect-1 border-1 shadow-lg border-gray-400"
                     }
                 >
                     <div
