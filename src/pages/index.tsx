@@ -80,6 +80,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                                 options={{
                                     cursor: false,
                                     waitUntilVisible: true,
+                                    html: true,
                                 }}
                             >
                                 <h1
