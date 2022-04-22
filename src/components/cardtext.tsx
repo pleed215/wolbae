@@ -47,6 +47,7 @@ const CardText: React.FC<CardTextProp> = ({
             variants={emptyVariants}
             initial={"init"}
             whileFocus={"hover"}
+            whileTap={"hover"}
         >
             <GatsbyImage
                 image={image}

@@ -228,6 +228,41 @@ module.exports = {
                 },
             },
         },
+        {
+            resolve: `gatsby-plugin-robots-txt`,
+            options: {
+                host: `https://www.wolbae.co.kr`,
+                policy: [
+                    {
+                        userAgent: "*",
+                        allow: "/",
+                    },
+                ],
+            },
+        },
+        {
+            resolve: `gatsby-plugin-sitemap`,
+            options: {
+                query: `
+                    query {
+                    allSitePage {
+                        nodes {
+                            path
+                        }
+                    }}
+                `,
+                resolveSiteUrl: () => process.env.URL || `https://wolbae.co.kr`,
+                resolvePages: ({ allSitePage: { nodes: allPages } }) => {
+                    return allPages.map(page => ({ ...page }))
+                },
+                serialize: ({ path, modifiedGmt }) => {
+                    return {
+                        url: path,
+                        lastmod: modifiedGmt,
+                    }
+                },
+            },
+        },
         //        `gatsby-plugin-graphql-codegen`,
     ],
 }
