@@ -58,10 +58,14 @@ export type CardTextProp = {
     className: string
 }
 
-const isMobile = () =>
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-    )
+const isMobile = () => {
+    if (typeof navigator !== "undefined") {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+        )
+    }
+    return false
+}
 
 const CardText: React.FC<CardTextProp> = ({
     image,
