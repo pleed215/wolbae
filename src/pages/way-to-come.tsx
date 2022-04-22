@@ -13,16 +13,6 @@ import {
 import { Helmet } from "react-helmet"
 
 const WayToCome = () => {
-    /*const [ready, setReady] = useState(false)
-    React.useEffect(() => {
-        if (window !== undefined && document !== undefined) {
-            const script = document.createElement("script")
-            script.defer = true
-            script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=4fc661cc5efee39dc7d901aabff3c1b9&autoload=false`
-            document.body.appendChild(script)
-            setReady(true)
-        }
-    }, [])*/
     return (
         <>
             <Layout
@@ -53,7 +43,11 @@ const WayToCome = () => {
                                 size={"sm"}
                                 className={"mr-4"}
                             />
-                            <h1>010-5163-8181(24시 상담)</h1>
+                            <h1>
+                                <a href={"tel:010-5163-8181"}>
+                                    010-5163-8181(24시 상담)
+                                </a>
+                            </h1>
                         </div>
                         <h1>
                             대구시 달서구 월배로 119 3층 월배요양병원 (월배시장
@@ -92,9 +86,14 @@ const WayToCome = () => {
                             주소: 대구광역시 달서구 월배로 119 KS빌딩 3층
                             월배요양병원
                             <br />
-                            E-mail: wb6320808@naver.com
+                            E-mail:{" "}
+                            <a href={"mailto:pleed0215@wolbae.co.kr"}>
+                                pleed0215@wolbae.co.kr
+                            </a>
                             <br />
-                            상담문의: 053-632-0808
+                            <a href={"tel:010-5163-8181"}>
+                                상담문의: 010-5163-8181
+                            </a>
                             <br />
                             FAX: 053-634-0011
                         </p>
