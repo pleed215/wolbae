@@ -1,5 +1,5 @@
-import React from "react"
-import { motion, Variants } from "framer-motion"
+import React, { useCallback, useState } from "react"
+import { motion, useAnimation, Variants } from "framer-motion"
 import { GatsbyImage, IGatsbyImageData, StaticImage } from "gatsby-plugin-image"
 
 const hoverTextAnimationVariants: Variants = {
@@ -17,12 +17,24 @@ const hoverTextAnimationVariants: Variants = {
             type: "spring",
         },
     },
+}
+
+const mobileAnimationVariants: Variants = {
+    init: {
+        visibility: "hidden",
+        opacity: 0,
+        rotateY: 0,
+        transition: {
+            duration: 0.4,
+            type: "tween",
+        },
+    },
     tap: {
         visibility: "visible",
-        y: "0",
         opacity: 1,
+        rotateY: 360,
         transition: {
-            duration: 0.1,
+            duration: 0.4,
             type: "tween",
         },
     },
@@ -46,20 +58,33 @@ export type CardTextProp = {
     className: string
 }
 
+const isMobile = () =>
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+    )
+
 const CardText: React.FC<CardTextProp> = ({
     image,
     title,
     hoverText,
     className,
 }) => {
+    const [open, setOpen] = useState(false)
+    const [mobile] = useState(isMobile())
+    const animation = useAnimation()
+    const onMobileClick = async () => {
+        if (!mobile) return
+        await animation.start(open ? "init" : "tap")
+        setOpen(prev => !prev)
+    }
     return (
         <motion.div
             className={className}
-            whileHover={"hover"}
+            {...(!mobile && { whileHover: "hover" })}
             variants={emptyVariants}
             initial={"init"}
-            whileFocus={"hover"}
-            whileTap={"tap"}
+            onClick={onMobileClick}
+            onBlur={async () => await animation.start("init")}
         >
             <GatsbyImage
                 image={image}
@@ -68,17 +93,22 @@ const CardText: React.FC<CardTextProp> = ({
                 style={{ gridArea: "1/1" }}
             />
             <div
-                className={
-                    "w-full group-hover:hidden place-items-center text-center z-10 p-3 bg-white/50 text-xl font-bold"
-                }
+                className={`w-full ${
+                    !mobile && "group-hover:hidden"
+                } place-items-center text-center z-10 p-3 bg-white/50 text-xl font-bold`}
                 style={{ gridArea: "1/1" }}
             >
                 {title}
             </div>
             <motion.div
-                variants={hoverTextAnimationVariants}
+                {...(mobile && {
+                    animate: animation,
+                    initial: "init",
+                    variants: mobileAnimationVariants,
+                })}
+                {...(!mobile && { variants: hoverTextAnimationVariants })}
                 className={
-                    "absolute w-full h-full p-2 bg-lime-600/80 text-white font-jua text-md flex items-center justify-center"
+                    "absolute w-full h-full p-2 bg-lime-600/80 text-white font-jua text-md flex items-center justify-center z-10"
                 }
             >
                 {hoverText}

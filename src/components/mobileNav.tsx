@@ -33,7 +33,9 @@ const MobileNav: React.FC<MobileNavProps> = ({ show, menuLinks }) => {
             }
             initial={"hidden"}
         >
-            {menuLinks.map(menu => menu && <MobileMenuItem menu={menu} />)}
+            {menuLinks.map(
+                menu => menu && <MobileMenuItem key={menu.name} menu={menu} />
+            )}
         </motion.nav>
     ) : (
         <></>
