@@ -17,12 +17,24 @@ const hoverTextAnimationVariants: Variants = {
             type: "spring",
         },
     },
+    tap: {
+        visibility: "visible",
+        y: "0",
+        opacity: 1,
+        transition: {
+            duration: 0.1,
+            type: "tween",
+        },
+    },
 }
 const emptyVariants: Variants = {
     init: {
         y: "0",
     },
     hover: {
+        y: "0",
+    },
+    tap: {
         y: "0",
     },
 }
@@ -47,7 +59,7 @@ const CardText: React.FC<CardTextProp> = ({
             variants={emptyVariants}
             initial={"init"}
             whileFocus={"hover"}
-            whileTap={"hover"}
+            whileTap={"tap"}
         >
             <GatsbyImage
                 image={image}
