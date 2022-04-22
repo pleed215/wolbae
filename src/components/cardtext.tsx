@@ -23,7 +23,6 @@ const mobileAnimationVariants: Variants = {
     init: {
         visibility: "hidden",
         opacity: 0,
-        rotateY: 0,
         transition: {
             duration: 0.4,
             type: "tween",
@@ -32,7 +31,6 @@ const mobileAnimationVariants: Variants = {
     tap: {
         visibility: "visible",
         opacity: 1,
-        rotateY: 360,
         transition: {
             duration: 0.4,
             type: "tween",
