@@ -5,7 +5,7 @@ module.exports = {
     theme: {
         fontFamily: {
             jua: ["jua"],
-            gothic: ["gothic"],
+            nanum: ["nanum"],
         },
         extend: {
             screens: {

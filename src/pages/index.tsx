@@ -101,7 +101,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                         />
                     </div>
                 </div>
-                <div>
+                <div className={"font-gothic"}>
                     <div className={"w-full h-full grid"}>
                         <GatsbyImage
                             className={"w-full h-full"}
@@ -171,7 +171,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                     "text-center max-w-md w-full py-16 flex items-center px-8 bg-lime-700 text-white my-auto mx-auto"
                 }
             >
-                <h1 className={"text-2xl font-nanum font-thin"}>
+                <h1 className={"text-2xl font-thin"}>
                     보이지 않는{" "}
                     <strong className={"text-3xl font-bold"}>"건강"</strong>에{" "}
                     <strong className={"text-2xl font_bold"}>깊이</strong>를
@@ -313,18 +313,18 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                     <div className={"mt-2 px-2"}>
                         <div
                             className={
-                                "flex items-center justify-start text-sm mb-2"
+                                "flex items-center justify-start text-sm font-thin mb-2"
                             }
                         >
                             <FontAwesomeIcon icon={faMap} className={"mr-2"} />
                             <span>
-                                <strong>주소: </strong>대구시 달서구 월배로 119
+                                <span className={"font-bold"}>주소</span>대구시 달서구 월배로 119
                                 KS빌딩 3,5~8층
                             </span>
                         </div>
                         <div
                             className={
-                                "flex items-center justify-start text-sm mb-2"
+                                "flex items-center justify-start text-sm font-thin mb-2"
                             }
                         >
                             <FontAwesomeIcon
@@ -332,7 +332,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                                 className={"mr-2"}
                             />
                             <span>
-                                <strong>지하철: </strong>월배역 1번 출구, 진천역
+                                <span className={"font-bold"}>지하철 </span>월배역 1번 출구, 진천역
                                 4번 출구 200m
                             </span>
                         </div>
@@ -343,7 +343,7 @@ const IndexPage: React.FC<PageProps<AllMdxType>> = ({ data }) => {
                         >
                             <FontAwesomeIcon icon={faBus} className={"mr-2"} />
                             <span>
-                                <strong>버스: </strong>600, 650, 651, 836,
+                                <span className={"font-bold"}>버스 </span>600, 650, 651, 836,
                                 달서5, 달성2
                             </span>
                         </div>

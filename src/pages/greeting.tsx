@@ -20,7 +20,6 @@ const Greeting = () => {
                         </h2>
                         <h4 className={"font-gothic font-normal text-xl"}>
                             월배요양병원에 입원하시는 모든 어르신들에게 최상의
-                            <br />
                             요양 및 진료, 간병, 간호 서비스를 받으실 수 있도록
                             최선을 다하겠습니다.
                             <br />

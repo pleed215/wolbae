@@ -5,11 +5,11 @@ import Dot from "../images/icons/four-dot.svg"
 import CardText from "../components/cardtext"
 import type { CardTextProp } from "../components/cardtext"
 import { graphql, PageProps } from "gatsby"
-import { FileConnection } from "../../graphql-types"
+import { File as FileType } from "../../graphql-types"
 import { StaticImage } from "gatsby-plugin-image"
 
 type AllFileDataType = {
-    allFile: FileConnection
+    [key:string]: FileType;
 }
 
 const TreatSystem: React.FC<PageProps<AllFileDataType>> = ({ data }) => {
@@ -18,37 +18,37 @@ const TreatSystem: React.FC<PageProps<AllFileDataType>> = ({ data }) => {
             title: "치매 환자 관리",
             hoverText:
                 "치매 어르신들을 집에서 관리하시기 매우 어렵습니다. 때에 맞춰 어르신들에게 치매약 복용토록 해드리고, 인지기능 개선을 위해 다양한 활동을 할 수 있도록 해드리고 있습니다",
-            image: data.allFile.edges[3].node.childImageSharp?.gatsbyImageData!,
+            image: data.dementia.childImageSharp?.gatsbyImageData!,
         },
         {
             title: "만성 질환 관리",
             hoverText:
                 "고령의 어르신 또는 만성질환으로 식사를 잘 못하시고 기력이 떨어지신 어르신들은 전문적인 관리가 필요합니다. 어르신들이 식사를 잘 못하시고 기력이 떨어지셨으면 지체 없이 병원 치료를 받는 것이 좋습니다.",
-            image: data.allFile.edges[4].node.childImageSharp?.gatsbyImageData!,
+            image: data.gw.childImageSharp?.gatsbyImageData!,
         },
         {
             title: "욕창 환자 관리",
             hoverText:
                 "와상 상태가 지속되면 특정 부위(꼬리뼈, 뒷꿈치, 엉치뼈 등)의 압박 및 괴사가 진행 될 수 있습니다. 호발부위가 벌겋게 되는 양상이 보이시면 지체 없이 욕창 치료를 위해 입원하시는 것이 좋습니다.",
-            image: data.allFile.edges[5].node.childImageSharp?.gatsbyImageData!,
+            image: data.pressure.childImageSharp?.gatsbyImageData!,
         },
         {
             title: "와상 환자 관리",
             hoverText:
                 "기력이 쇠하거나 만성질병, 통증, 뇌혈관 질환 등으로 거동이 힘들게 되시면 와상상태로 가기 쉬운데, 와상상태는 지속적인 관리가 필요합니다. 주기적인 체위 변경과 좋은 영양상태가 필요합니다.",
-            image: data.allFile.edges[2].node.childImageSharp?.gatsbyImageData!,
+            image: data.bedridden.childImageSharp?.gatsbyImageData!,
         },
         {
             title: "수술 후 통증 관리",
             hoverText:
                 "수술 후에는 특히 사고에 취약합니다. 아직 회복이 덜 되었는데, 수술 병원에서 퇴원을 하셔야 하는 상황에서 요양과 통증 관리가 더욱 필요할 수 있습니다.",
-            image: data.allFile.edges[1].node.childImageSharp?.gatsbyImageData!,
+            image: data.pain.childImageSharp?.gatsbyImageData!,
         },
         {
             title: "뇌혈관 질환 후유증",
             hoverText:
                 "흔히 말하는 중풍입니다. 중풍 후유증으로 인해 팔다리가 저리거나 거동이 어려워서 일상생활이 힘드신 어르신들은 요양과 치료가 모두 필요하실 수 있습니다.",
-            image: data.allFile.edges[0].node.childImageSharp?.gatsbyImageData!,
+            image: data.cva.childImageSharp?.gatsbyImageData!,
         },
     ]
 
@@ -120,16 +120,34 @@ export default TreatSystem
 
 export const query = graphql`
     query treatImages {
-        allFile(
-            filter: { relativePath: { regex: "/treat_/g" } }
-            sort: { fields: extension, order: ASC }
-        ) {
-            edges {
-                node {
-                    childImageSharp {
-                        gatsbyImageData(width: 480)
-                    }
-                }
+        bedridden: file(relativePath: { eq: "treat_bedridden.jpg" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        } 
+        cva: file(relativePath: { eq: "treat_cva.jpg" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        }
+        dementia: file(relativePath: { eq: "treat_dementia.png" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        }
+        gw: file(relativePath: { eq: "treat_gw.png" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        }
+        pain: file(relativePath: { eq: "treat_pain.jpg" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
+            }
+        }
+        pressure: file(relativePath: { eq: "treat_pressure.png" }) {
+            childImageSharp {
+                gatsbyImageData(width: 400)
             }
         }
     }
