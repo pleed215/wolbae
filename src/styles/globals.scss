@@ -66,13 +66,13 @@
   }
 
   a {
-    @apply text-green-400;
+    @apply text-lime-700;
     @apply underline;
     @apply transition-colors;
     @apply duration-200;
 
     &:hover {
-      @apply text-green-200;
+      @apply text-lime-600;
     }
   }
 
@@ -90,7 +90,7 @@
   li > p,
   li > ul,
   li > ol {
-    @apply mb-0;
+    @apply mb-1;
   }
 
   ol {
