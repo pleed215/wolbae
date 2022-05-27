@@ -6,7 +6,7 @@
 
 // You can delete this file if you're not using it
 import "./src/styles/globals.scss"
-function insertGoogleAnalytics() {
+function insertAnalytics() {
     const script = document.createElement("script")
     script.type = "text/javascript"
     script.async = true
@@ -19,8 +19,22 @@ function insertGoogleAnalytics() {
     }
     gtag("js", new Date())
     gtag("config", "UA-226672684-1")
+
+    const script2 = document.createElement('script');
+    script2.type = "text/javascript";
+    script2.src = "//wcs.naver.net/wcslog.js";
+    document.body.appendChild(script2);
+
+    const script3 = document.createElement('script');
+    script3.type = 'text/javascript';
+    script.innerText = `
+        if(!wcs_add) var wcs_add = {};
+        wcs_add["wa"] = "146835504658e60";
+        if(window.wcs) wcs_do();
+    `
+    document.body.appendChild(script3);
 }
 
 export function onInitialClientRender() {
-    insertGoogleAnalytics()
+    insertAnalytics()
 }

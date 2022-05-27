@@ -7,14 +7,14 @@
 // You can delete this file if you're not using it
 import React from "react"
 
-export const onRenderBody = ({ setPostBodyComponents, setHeadComponents }) => {
+export const onRenderBody = ({setPostBodyComponents, setHeadComponents}) => {
     setHeadComponents([
         <meta
             key={"naver-site-verification"}
             name="naver-site-verification"
             content="1b00ffd7da7a3a2efaebac547386ea6a759da9ad"
         />,
-    ])
+    ]);
     setPostBodyComponents([
         <script
             key={
