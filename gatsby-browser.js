@@ -27,11 +27,7 @@ function insertAnalytics() {
 
     const script3 = document.createElement('script');
     script3.type = 'text/javascript';
-    script3.innerText = `
-        if(!wcs_add) var wcs_add = {};
-        wcs_add["wa"] = "146835504658e60";
-        if(window.wcs) wcs_do();
-    `
+    script3.innerText = `if(!wcs_add) var wcs_add = {};wcs_add["wa"] = "146835504658e60";if(window.wcs) wcs_do();`
     document.body.appendChild(script3);
 }
 
