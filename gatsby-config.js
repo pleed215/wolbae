@@ -263,6 +263,6 @@ module.exports = {
                 },
             },
         },
-        //        `gatsby-plugin-graphql-codegen`,
+        `gatsby-plugin-minify`
     ],
 }
