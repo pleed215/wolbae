@@ -1,19 +1,19 @@
 import * as React from "react"
-import { graphql, Link, useStaticQuery } from "gatsby"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPhone, faStream, faTimes } from "@fortawesome/free-solid-svg-icons"
+import {graphql, Link, useStaticQuery} from "gatsby"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faPhone, faStream, faTimes} from "@fortawesome/free-solid-svg-icons"
 import {
     motion,
     useAnimation,
     useViewportScroll,
     Variants,
 } from "framer-motion"
-import { Site } from "../../graphql-types"
+import {Site} from "../../graphql-types"
 import MainNav from "./mainNav"
-import { useEffect, useRef, useState } from "react"
+import {useEffect, useRef, useState} from "react"
 import MobileNav from "./mobileNav"
 import useOutsideClickDetector from "../utils/hooks/useOutsideAlerter"
-import { StaticImage } from "gatsby-plugin-image"
+import {StaticImage} from "gatsby-plugin-image"
 
 const headerAnimateVars: Variants = {
     hidden: {
@@ -26,9 +26,9 @@ const headerAnimateVars: Variants = {
 
 type HeaderProps = { siteTitle: string }
 
-const Header = ({ siteTitle }: HeaderProps) => {
+const Header = ({siteTitle}: HeaderProps) => {
     const headerAnimate = useAnimation()
-    const { scrollY } = useViewportScroll()
+    const {scrollY} = useViewportScroll()
     const [toggleMobileMenu, setToggleMobileMenu] = useState(false)
     const headerRef = useRef<HTMLElement>(null)
     const clickedOutside = useOutsideClickDetector(headerRef)
@@ -41,7 +41,7 @@ const Header = ({ siteTitle }: HeaderProps) => {
             }
         })
     }, [scrollY, headerAnimate])
-    const { site } = useStaticQuery<{ site: Site }>(graphql`
+    const {site} = useStaticQuery<{ site: Site }>(graphql`
         query {
             site {
                 siteMetadata {
@@ -72,7 +72,7 @@ const Header = ({ siteTitle }: HeaderProps) => {
             variants={headerAnimateVars}
             animate={headerAnimate}
             initial={"show"}
-            transition={{ default: 1 }}
+            transition={{default: 1}}
             className={"font-jua w-full shadow flex  flex-col"}
             ref={headerRef}
         >
@@ -82,16 +82,22 @@ const Header = ({ siteTitle }: HeaderProps) => {
                         "layout w-full h-10 text-lg text-white flex items-center justify-between mx-auto lg:px-0 px-4"
                     }
                 >
-                    <a href={"tel:010-5163-8181"}>
-                        <div className={"flex items-center"}>
-                            <FontAwesomeIcon
-                                icon={faPhone}
-                                size={"1x"}
-                                className={"mr-4"}
-                            />
-                            <h1>010-5163-8181</h1>
-                        </div>
-                    </a>
+                    <div className={"flex items-center"}>
+                        <a href={"tel:010-5163-8181"}>
+                            <div className={"flex items-center"}>
+                                <FontAwesomeIcon
+                                    icon={faPhone}
+                                    size={"1x"}
+                                    className={"mr-4"}
+                                />
+                                <h1>010-5163-8181</h1>
+                            </div>
+                        </a>
+                        <a href={"https://blog.naver.com/wb6320808"} className={"ml-2"}>
+                            <StaticImage width={24} height={24} src={"../images/nblog.png"} alt={"월배요양병원 블로그"}/>
+                        </a>
+                    </div>
+
                     <div>
                         <Link to={"/way-to-come"}>
                             <h4>찾아오시는 길</h4>
@@ -116,7 +122,7 @@ const Header = ({ siteTitle }: HeaderProps) => {
                     </h1>
                     <nav className={"w-full w-full sm:inline hidden my-auto"}>
                         {site.siteMetadata && site.siteMetadata.menuLinks && (
-                            <MainNav menuLinks={site.siteMetadata.menuLinks} />
+                            <MainNav menuLinks={site.siteMetadata.menuLinks}/>
                         )}
                     </nav>
                     <div
