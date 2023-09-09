@@ -92,6 +92,7 @@ module.exports = {
         ],
     },
     plugins: [
+        `gatsby-plugin-netlify`,
         `gatsby-plugin-sass`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-image`,
