@@ -179,7 +179,7 @@ const NonInsurance = () => {
                                 의료법 시행규칙 제15조제1항에 따른 진료기록부
                                 등을 복사하는 경우를 말함(6매부터, 1매당 금액)
                             </td>
-                            <td>200</td>
+                            <td>100</td>
                         </tr>
                         <tr>
                             <th>13</th>
@@ -201,6 +201,22 @@ const NonInsurance = () => {
                                 사본으로 본다)
                             </td>
                             <td>1,000</td>
+                        </tr>
+                        <tr>
+                            <th>15</th>
+                            <td className="title">독감 예방 접종</td>
+                            <td>4가 독감 예방 접종</td>
+                            <td>40,000</td>
+                        </tr>
+                        <tr>
+                            <th>16</th>
+                            <td className="title">
+                                신속 항원 검사
+                                <br />
+                                (전문가용)
+                            </td>
+                            <td>코로나-19 검사 전문가용 키트로 검사</td>
+                            <td>15,000</td>
                         </tr>
                     </tbody>
                 </table>
